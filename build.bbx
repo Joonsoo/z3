@@ -1,0 +1,12 @@
+from bibix.plugins import cmd
+import jvm
+
+jarBuild = cmd.execute(
+  prerequisites = [
+    cmd.command("python scripts/mk_make.py --java", pwd="."),
+    cmd.command("make", pwd="build"),
+  ],
+  output = "build/com.microsoft.z3.jar",
+)
+
+jar = jvm.lib(jarBuild)
